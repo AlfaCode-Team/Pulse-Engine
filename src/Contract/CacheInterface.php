@@ -1,8 +1,19 @@
 <?php
-namespace AlfacodeTeam\PulseEngine\Contract;
 
-interface CacheInterface {
-    public function get(string $key);
-    public function set(string $key, $value, int $ttl = 3600);
-    public function delete(string $key);
+declare(strict_types=1);
+
+namespace AlfaCode\PulseEngine\Contract;
+
+/**
+ * Simple cache contract (mirrors PSR-16 subset).
+ */
+interface CacheInterface
+{
+    public function get(string $key, mixed $default = null): mixed;
+
+    public function set(string $key, mixed $value, int $ttl = 3600): bool;
+
+    public function delete(string $key): bool;
+
+    public function has(string $key): bool;
 }
